@@ -1,0 +1,91 @@
+//非递归前序遍历
+void preOrder(node * root){
+  if(root == null) return;
+  node * curr = root;
+  stack<node*> s;
+  s.push(curr);
+  while(!s.empty()){
+    curr = s.top();
+    cout<<curr.value;
+    s.pop();
+    if(curr.left != null) s.push(curr.left);
+    if(curr.right != null) s.push(curr.right);
+  }
+}
+
+//非递归中序遍历
+void inOrder(node * root){
+  if(root == null) return;
+  node * curr = root;
+  stack<node*> s;
+  s.push(curr);
+  while(!s.empty()){
+    while(s.top().left != null)
+      s.push(s.top().left);
+    while(!s.empty()){
+      curr = s.top();
+      cout<<curr.value;
+      s.pop();
+      if(curr.right != null){
+        s.push(curr.right);
+        break;
+      }
+    }  
+  }
+}
+
+//非递归后序遍历
+void postOrder(node* root){
+  if(root == null) return;
+  node* lastpop = null;
+  stack<node*> = s;
+  s.push(root);
+  while(!s.empty){
+    while(s.top().left != null)
+      s.push(s.top().left);
+    while(!s.empty()){
+      if(lastpop == s.top().right || s.top().right == null){
+        cout<<s.top().value;
+        lastpop = s.top();
+        s.pop();
+      }
+      else if(s.top().right != null){
+        s.push(s.top().right);
+        break;
+      }
+    }
+  }
+}
+
+//广度遍历
+void levelOrder(node* root){
+  if(root == null) return;
+  queue<node*> q;
+  q.enqueue(root);
+  while(!q.empty()){
+    cout<<q.front().value;
+    if(q.front().left != null) q.enqueue(q.front().left);
+    if(q.front().right != null) q.enqueue(q.front().right);
+    q.pop();
+  }
+}
+
+//反转二叉树
+node* inverseTree(node* root){
+  if(root == null) return null;
+  queue<node*> q;
+  q.enqueue(root);
+  while(!q.empty()){
+    node* curr = q.front();
+    q.pop();
+    
+    node* template = curr.left;
+    curr.left = curr.right;
+    curr.right = template;
+    
+    if(curr.left != null) q.enqueue(curr.left);
+    if(curr.right != null) q.enqueue(curr.right);
+  }
+  return root;
+}
+
