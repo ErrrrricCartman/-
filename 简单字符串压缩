@@ -1,0 +1,29 @@
+string zipString(string iniString){
+  string st = "";
+  if(iniString.size() <= 1) return iniString;
+  st += iniString[0];
+  int count = 1;
+  for(int i=1; i<iniString.size(); i++){
+    if(iniString[i] != iniString[i-1]){
+      st += to_string(count) + iniString[i];
+      count = 0;
+    }
+    count ++
+  }
+  st += to_string(count);
+  if(st.size() >= iniString.size()) return iniString;
+  else return st;
+}
+
+string to_string(int n){
+  int a[30];count =0;
+  string s ="";
+  while(n){
+    a[count++]=n%10;
+    n/=10;
+  }
+  for(int i=count-1; i>=0;i--){
+    s+=('0'+a[i]);
+  }
+  return s;
+}
