@@ -1,0 +1,57 @@
+void fix_up(vector<int>& vec){
+  int pos = vec.size()-1;
+  int n_val = vec[pos];
+  int parent = (pos-1)/2;
+  
+  while(parent >0 && n_val < vec[parent]){
+    swap(vec[parent],vec[pos]);
+    pos = parent;
+    parent = (pos-1)/2;
+    n_val = vec[pos];
+  }
+}
+
+void heap_insert(vector<int>& vec, int val){
+  vec.push_back(val);
+  fix_up(vec);
+}
+
+
+//向下调整
+void fix_down(vector<int>& vec){
+  if(vec.empty()) return;
+  
+  int pos =0;
+  int n_val = vec[pos];
+  int left = pos * 2 +1;
+  int right = left +1;
+  
+  while(left < vec.size()){
+    int * ref;
+    int npos;
+    if(right<vec,size()){
+      ref = &(vec[left]<vec[right]? vec[left]:vec[right]);
+      npos = vec[left]<vec[right]? left:right;
+    }
+    else{
+      ref = &vec[left];
+      npos = left;
+    }
+    if(n_val>*ref){
+      swap(vec[pos],*ref);
+    }
+    else break;
+    
+    pos = npos;
+    left = pos*2 +1;
+    right = left +1;
+    if(pos<vec.size()) n_val = vec[pos];   
+  }
+}
+
+void pop(vector<int> & vec){
+  cout<<vec[0];
+  vec[0] =vec[vec.size()-1];
+  vec.pop_back();
+  fix_down(vec);
+}
