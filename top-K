@@ -1,0 +1,25 @@
+//基于快排的top-k解法，O(n)
+//如果连快排都看不懂那就不能算是人了
+int partion(int arr[], int low, int high){
+  int pivot = arr[low];
+  while(low < high){
+    while(low< high && arr[high] < pivot) high--;
+    arr[low] = arr[high];
+    low++;
+    while(low < high && arr[low] > pivot) low++;
+    arr[high] = arr[low];
+    high--;
+  }
+  arr[low] = pivot;
+  return low;
+}
+
+int top-K(int arr[], int low, int high ,int k){
+  if(low > high || k < 1) return -1;
+  if(low == high) return low;
+  int index = partion(arr[], low, high);
+  if(low + k == index + 1) return index;
+  else if(low + k < index + 1) return top-k(arr[], low, index - 1, k);
+  else return top-k(arr[], index + 1, high, k+low-index-1);
+}
+
