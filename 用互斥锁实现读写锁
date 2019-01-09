@@ -1,0 +1,25 @@
+pthread_mutex_t rdlock = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t wrlock = PTHREAD_MUTEX_INITIALIZER;
+int readCount = 0;
+
+void rdLock(){
+  pthread_mutex_lock(&rdlock);
+  readCount++;
+  if(readCount == 1) pthread_mutex_lock(&wrlock);
+  pthread_mutex_unlock(&rdlock);
+}
+
+void rdUnlock(){
+  pthread_mutex_lock(&rdlock);
+  readCount--;
+  if(readCount == 0) pthread_mutex_unlock(&wrlock);
+  pthread_mutex_unlock(&rdlock);
+}
+
+void wrLock(){
+  pthread_mutex_lock(&wrlock);
+}
+
+void wrUnlock(){
+  pthread_mutex_unlock(&wrlock);
+}
