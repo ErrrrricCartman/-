@@ -1,0 +1,20 @@
+#ifndef C_SINGLETON_H
+#define C_SINGLETON_H
+
+#include<iostream>
+using namespace std;
+class CSingleton{
+  private:
+    CSingleton();
+    CSingleton(const CSingleton &);
+    CSingleton& operater=(const CSingleton&);
+    ~CSingleton();
+    
+    static CSingleton myInstance;
+  public:
+    static CSingleton* getInstance(){
+      return &myInstance;
+    }
+};
+
+#endif
