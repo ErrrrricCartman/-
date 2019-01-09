@@ -1,0 +1,11 @@
+//动态规划
+int maxSubSum(int arr[]){
+  int MaxSum =0;
+  int thisSum =0;
+  for(int i =0;i<arr.size();i++){
+    thisSum +=arr[i];
+    if(thisSum>MaxSum) MaxSum=thisSum;
+    if(thisSum<0) thisSum=0;
+  }
+  return MaxSum;
+}
