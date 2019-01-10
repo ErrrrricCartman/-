@@ -5,8 +5,8 @@ private:
   int _count;
 public:
   SmartPointer(T* ptr=nullptr):_ptr(ptr){
-    if(_ptr) count=1;
-    else count=0;
+    if(_ptr) _count=1;
+    else _count=0;
   }
   
   SmartPointer(const SmartPointer& ptr){
