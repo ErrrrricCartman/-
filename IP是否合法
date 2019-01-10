@@ -1,0 +1,28 @@
+bool inLegalIP(const string addr){
+  int len=addr.size();
+  int stage=0;
+  int stage_value=0;
+  int is_stage=0;
+  
+  if(isalpha(addr[0])) return false;
+  for(int i=0;i<len;i++){
+    if(isdigit(addr[i])){
+      stage_value=satge_value*10+(addr[i]-'0');
+      is_stage++;
+    }
+    else if(addr[i] == '.'){
+      if(is_stage>0 && stage_value<=255){
+        stage++;
+        stage_value=0;
+        is_stage=0;
+      }
+      else return false;
+    }
+    else return false;
+  }
+  if(is_stage>0 && stage_value<=255){
+    stage++;
+  }
+  if(stage==4) return ture;
+  else return false;
+}
