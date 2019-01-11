@@ -10,11 +10,12 @@ class CSingleton{
     CSingleton& operater=(const CSingleton&);
     ~CSingleton();
     
-    static CSingleton myInstance;
+    static CSingleton *myInstance;
   public:
     static CSingleton* getInstance(){
-      return &myInstance;
+      if(myInstance==null) myInstance = new Csingleton();
+      return myInstance;
     }
 };
-
+CSingleton* CSingleton::myInstance=null;
 #endif
